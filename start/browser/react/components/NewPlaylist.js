@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 export default class NewPlaylist extends Component {
   constructor(){
@@ -25,6 +26,12 @@ export default class NewPlaylist extends Component {
     this.setState({
       inputValue: ''
     })
+
+    axios.post('/api/playlists', { name:this.state.inputValue })
+    .then(res => res.data)
+    .then(result => {
+      console.log(result) // response json from the server!
+    });
   }
 
   render(){
