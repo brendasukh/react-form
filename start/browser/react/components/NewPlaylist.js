@@ -20,18 +20,10 @@ export default class NewPlaylist extends Component {
     });
   }
 
-  handleSubmit (event) {
-    event.preventDefault();
-    console.log(event.target.playlist.value);
-    this.setState({
-      inputValue: ''
-    })
-
-    axios.post('/api/playlists', { name:this.state.inputValue })
-    .then(res => res.data)
-    .then(result => {
-      console.log(result) // response json from the server!
-    });
+  handleSubmit (evt) {
+    evt.preventDefault(); // prevent the page from refreshing
+    this.props.addPlaylist(this.state.inputValue); // pass the input value to the method from Main!
+    this.setState({inputValue: ''}); // reset the input value to be empty
   }
 
   render(){
